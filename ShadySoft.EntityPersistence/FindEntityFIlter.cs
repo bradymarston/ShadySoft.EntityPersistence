@@ -24,7 +24,7 @@ namespace ShadySoft.EntityPersistence
                     return;
                 }
 
-                actionContext.HttpContext.Items.Add("entity", entity);
+                actionContext.HttpContext.Items.Add("shadyEntity", entity);
             }
 
             await next();

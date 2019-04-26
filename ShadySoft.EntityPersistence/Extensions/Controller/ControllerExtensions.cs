@@ -12,7 +12,7 @@ namespace ShadySoft.EntityPersistence.Extensions.Controller
             if (httpContext == null)
                 throw new ArgumentNullException(nameof(httpContext));
 
-            return httpContext.Items["entity"] as TEntity;
+            return httpContext.Items["shadyEntity"] as TEntity;
         }
     }
 }

@@ -18,10 +18,11 @@ namespace ShadySoft.EntityPersistence
             return services;
         }
 
-        public static IServiceCollection AddRepository<TEntity>(this IServiceCollection services)
+        public static IServiceCollection AddDefaultRepository<TEntity, TContext>(this IServiceCollection services)
             where TEntity : class
+            where TContext : DbContext
         {
-            return services.AddRepository<TEntity, Repository<TEntity>>();
+            return services.AddRepository<TEntity, Repository<TEntity, TContext>>();
         }
 
         public static IServiceCollection AddRepository<TEntity, TRepository>(this IServiceCollection services)

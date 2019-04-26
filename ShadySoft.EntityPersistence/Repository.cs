@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ShadySoft.EntityPersistence
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity, TContext> : IRepository<TEntity> where TEntity : class
+        where TContext : DbContext
     {
-        protected readonly DbContext _context;
+        protected readonly TContext _context;
 
-        public Repository(DbContext context)
+        public Repository(TContext context)
         {
             _context = context;
         }

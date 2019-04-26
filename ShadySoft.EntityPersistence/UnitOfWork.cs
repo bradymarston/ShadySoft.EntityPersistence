@@ -13,7 +13,7 @@ namespace ShadySoft.EntityPersistence
             _context = context;
         }
 
-        public async Task Complete()
+        public async Task CompleteAsync()
         {
             await _context.SaveChangesAsync();
         }

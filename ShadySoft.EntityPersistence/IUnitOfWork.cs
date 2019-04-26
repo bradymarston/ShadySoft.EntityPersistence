@@ -4,6 +4,6 @@ namespace ShadySoft.EntityPersistence
 {
     public interface IUnitOfWork
     {
-        Task Complete();
+        Task CompleteAsync();
     }
 }

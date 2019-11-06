@@ -2,11 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Authors>Brady Marston</Authors>
+    <Company>ShadySoft</Company>
+    <Version>0.1911.06.1</Version>
+
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.0.0-preview5-19227-01" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview5.19227.1" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShadySoft.EntityPersistence
@@ -13,9 +14,22 @@ namespace ShadySoft.EntityPersistence
             _context = context;
         }
 
-        public async Task CompleteAsync()
+        public async Task CompleteAsync(bool RollbackOnFailure = false)
         {
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                if (RollbackOnFailure)
+                {
+                    var changes = _context.ChangeTracker.Entries().Where(ce => ce.State != EntityState.Unchanged);
+                    foreach (var ce in changes)
+                        await ce.ReloadAsync();
+                }
+                throw e;
+            }
         }
     }
 }

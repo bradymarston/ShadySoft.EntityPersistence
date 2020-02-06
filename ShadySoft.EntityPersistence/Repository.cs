@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,14 @@ namespace ShadySoft.EntityPersistence
         virtual public void Remove(TEntity item)
         {
             _context.Remove(item);
+        }
+        virtual public async Task<TEntity> GetSingleOrDefaultAsync(Func<TEntity, bool> filterPredicate)
+        {
+            return await _context.Set<TEntity>().SingleOrDefaultAsync(e => filterPredicate(e));
+        }
+        virtual public async Task<IEnumerable<TEntity>> GetWhereAsync(Func<TEntity, bool> filterPredicate)
+        {
+            return await _context.Set<TEntity>().Where(e => filterPredicate(e)).ToListAsync();
         }
     }
 }
